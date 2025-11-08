@@ -6,7 +6,7 @@ function Contact() {
   useEffect(() => {
     // Fallback to ensure text visibility if GSAP fails
     const timeout = setTimeout(() => {
-      document.querySelectorAll('.contact h2, .contact p, .contact-info p, .contact-download').forEach(el => {
+      document.querySelectorAll('.contact h2, .contact p, .contact-info p, .contact-download, .pdf-viewer').forEach(el => {
         el.style.opacity = '1';
         el.style.transform = 'none';
       });
@@ -48,6 +48,15 @@ function Contact() {
         delay: 0.6,
         ease: 'power2.out',
       });
+
+      // Animate PDF viewer
+      gsap.to('.pdf-viewer', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.8,
+        ease: 'power2.out',
+      });
     });
 
     return () => {
@@ -65,7 +74,21 @@ function Contact() {
         <p>GitHub: <a href="https://github.com/Khant26">github</a></p>
         <p>Phone: +66-930470721</p>
       </div>
+      
       <a href="/KhantMaung_CV.pdf" download className="contact-download">Download Resume (PDF)</a>
+
+      <div className="pdf-viewer">
+        <h3>My Resume</h3>
+        <div className="pdf-container">
+          <iframe
+            src="/KhantMaung_CV.pdf"
+            title="Khant Maung Resume"
+            width="100%"
+            height="800px"
+            style={{ border: 'none', borderRadius: '8px' }}
+          />
+        </div>
+      </div>
     </section>
   );
 }
