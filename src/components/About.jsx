@@ -103,7 +103,7 @@ function About() {
           </ul>
         </div>
         <div className="experience">
-          <h4>Full Stack Web Developer – Brillar, Bangkok, Thailand</h4>
+          <h4>Full Stack Web Developer – Bangkok, Thailand</h4>
           <p className="date">Since 2023</p>
           <ul>
             <li>
