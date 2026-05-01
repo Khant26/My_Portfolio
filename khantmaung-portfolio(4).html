@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Khant Maung · Full-Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Epilogue:wght@300;400;600;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A0A0F;--ink2:#13131A;--ink3:#1C1C26;--ink4:#242433;
+  --lime:#C8FF57;--cyan:#00E5CC;--rose:#FF4B6E;--gold:#FFB830;
+  --txt:#E8E6F0;--txt2:#8B89A0;--txt3:#4A4860;
+  --br:rgba(255,255,255,0.06);
+  --nav1:52px;--nav2:44px;
+}
+body.light{
+  --ink:#F0F1F7;--ink2:#FFFFFF;--ink3:#E6E7F0;--ink4:#D8DAE8;
+  --txt:#0D0D1A;--txt2:#3D3C56;--txt3:#8A88A2;
+  --br:rgba(0,0,0,0.09);
+  --lime:#3A8A00;--cyan:#006B62;--gold:#A06800;--rose:#CC2244;
+}
+body{font-family:'Epilogue',sans-serif;background:var(--ink);color:var(--txt);font-size:16px;line-height:1.7;overflow-x:hidden;transition:background 0.25s,color 0.25s}
+.mono{font-family:'JetBrains Mono',monospace}
+button,a{cursor:pointer}
+input,textarea,select{font-family:'Epilogue',sans-serif}
+a{text-decoration:none}
+
+/* ── UTILITY ── */
+
+
+/* ══════════════════════════════════════
+   NAV 1 — top bar
+══════════════════════════════════════ */
+.nav1{
+  position:sticky;top:0;z-index:200;
+  background:rgba(10,10,15,0.97);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--br);height:var(--nav1)
+}
+body.light .nav1{background:rgba(240,241,247,0.97)}
+.nav1-inner{
+  width:100%;padding:0 3rem;
+  height:100%;display:flex;align-items:center;justify-content:space-between
+}
+.nav-brand{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--lime)}
+.nav-brand span{color:var(--txt3);font-weight:400}
+.nav1-right{display:flex;align-items:center;gap:8px}
+.theme-btn{
+  display:flex;align-items:center;gap:5px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  background:var(--ink3);border:1px solid var(--br);color:var(--txt2);
+  padding:0.4rem 0.85rem;border-radius:5px;transition:all 0.15s
+}
+.theme-btn:hover{color:var(--txt);border-color:rgba(200,255,87,0.3)}
+.theme-btn svg{width:13px;height:13px;flex-shrink:0}
+.hire-btn{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;
+  background:var(--lime);color:#0A0A0F;border:none;
+  padding:0.45rem 1.2rem;border-radius:5px;transition:opacity 0.15s
+}
+.hire-btn:hover{opacity:0.85}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero{border-bottom:1px solid var(--br);padding:5rem 0}
+.hero-inner{
+  width:100%;padding:0 3rem;
+  display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center
+}
+/* left */
+.hero-left{}
+.status-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);
+  background:rgba(0,229,204,0.07);border:1px solid rgba(0,229,204,0.2);
+  border-radius:4px;padding:0.3rem 0.8rem;margin-bottom:1.2rem;letter-spacing:0.5px
+}
+body.light .status-pill{background:rgba(0,107,98,0.07);border-color:rgba(0,107,98,0.2)}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 1.8s ease-in-out infinite;display:inline-block;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.hero-name-row{display:flex;align-items:center;gap:1.2rem;margin-bottom:0.5rem}
+.hero-avatar{
+  width:80px;height:80px;border-radius:50%;flex-shrink:0;
+  background:var(--ink3);border:2.5px solid rgba(200,255,87,0.35);
+  overflow:hidden;cursor:pointer;position:relative;
+  display:flex;align-items:center;justify-content:center;transition:border-color 0.2s
+}
+body.light .hero-avatar{border-color:rgba(58,138,0,0.35);background:var(--ink4)}
+.hero-avatar:hover{border-color:var(--lime)}
+.hero-avatar img{width:100%;height:100%;object-fit:cover;object-position:top;display:none;position:absolute;inset:0}
+.av-init{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:900;color:var(--lime);z-index:1}
+.av-hover{position:absolute;inset:0;background:rgba(10,10,15,0.65);display:flex;align-items:center;justify-content:center;font-size:1rem;opacity:0;transition:opacity 0.2s;z-index:2}
+.hero-avatar:hover .av-hover{opacity:1}
+.hero-name{font-size:clamp(3.5rem,6vw,6rem);font-weight:900;letter-spacing:-3px;line-height:0.95}
+.hero-name .accent{color:var(--lime)}
+.hero-role{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--txt2);margin-bottom:1.2rem;letter-spacing:0.3px}
+.hero-role .hl{color:var(--cyan)}
+body.light .hero-role .hl{color:var(--cyan)}
+.hero-bio{font-size:17px;color:var(--txt2);line-height:1.8;margin-bottom:2rem;max-width:580px}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn-lime{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;background:var(--lime);color:#0A0A0F;border:none;padding:0.6rem 1.4rem;border-radius:6px;transition:opacity 0.15s;display:inline-flex;align-items:center;gap:6px}
+.btn-lime:hover{opacity:0.85}
+.btn-outline{font-family:'JetBrains Mono',monospace;font-size:11px;background:transparent;color:var(--txt2);border:1px solid var(--br);padding:0.6rem 1.2rem;border-radius:6px;transition:all 0.15s;display:inline-flex;align-items:center;gap:6px}
+.btn-outline:hover{border-color:rgba(255,255,255,0.2);color:var(--txt)}
+body.light .btn-outline:hover{border-color:rgba(0,0,0,0.2)}
+/* right: overview */
+.hero-right{display:flex;flex-direction:column;gap:10px}
+.ov-card{background:var(--ink2);border:1px solid var(--br);border-radius:10px;padding:0.9rem}
+body.light .ov-card{background:var(--ink3)}
+.ov-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt3);margin-bottom:6px}
+.ov-hl{color:var(--lime)}
+.ov-username{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--cyan);margin-bottom:8px}
+.ov-grid{display:flex;flex-wrap:wrap;gap:2px}
+.ov-cell{width:10px;height:10px;border-radius:2px;background:var(--ink4)}
+body.light .ov-cell{background:var(--ink3)}
+.ov-cell.l1{background:rgba(200,255,87,0.2)}
+.ov-cell.l2{background:rgba(200,255,87,0.45)}
+.ov-cell.l3{background:rgba(200,255,87,0.7)}
+.ov-cell.l4{background:var(--lime)}
+.ov-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ov-stat{background:var(--ink2);border:1px solid var(--br);border-radius:8px;padding:0.7rem}
+body.light .ov-stat{background:var(--ink3)}
+.ov-stat-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt3);margin-bottom:4px}
+.ov-stat-val{font-size:1.8rem;font-weight:900;letter-spacing:-0.8px;line-height:1}
+.ov-stat-val.lime{color:var(--lime)}
+.ov-stat-val.cyan{color:var(--cyan)}
+.ov-big{background:var(--ink2);border:1px solid var(--br);border-radius:8px;padding:0.75rem}
+body.light .ov-big{background:var(--ink3)}
+.ov-big-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt3);margin-bottom:6px}
+.ov-companies{display:flex;flex-wrap:wrap;gap:4px}
+.ov-company-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt2);background:var(--ink4);border:1px solid var(--br);padding:2px 7px;border-radius:3px}
+body.light .ov-company-tag{background:var(--ink4)}
+
+/* ══════════════════════════════════════
+   NAV 2 — tabs
+══════════════════════════════════════ */
+.nav2{
+  position:sticky;top:var(--nav1);z-index:199;
+  background:var(--ink2);border-bottom:1px solid var(--br)
+}
+body.light .nav2{background:#fff}
+.nav2-inner{width:100%;padding:0 3rem;display:flex;justify-content:center}
+.pub-tab{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;
+  color:var(--txt3);padding:1rem 2rem;
+  border:none;border-bottom:2px solid transparent;
+  background:none;transition:all 0.2s;white-space:nowrap;letter-spacing:0.2px
+}
+.pub-tab:hover{color:var(--txt2)}
+.pub-tab.active{color:var(--lime);border-bottom-color:var(--lime)}
+body.light .pub-tab.active{color:var(--lime);border-bottom-color:var(--lime)}
+
+/* ══════════════════════════════════════
+   TAB PANELS
+══════════════════════════════════════ */
+.tab-panels{min-height:60vh}
+.tab-panel{display:none;padding:3rem 0;animation:fadeUp 0.22s ease}
+.tab-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.panel-inner{width:100%;padding:0 3rem}
+
+.sec-header{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--lime);background:rgba(200,255,87,0.08);border:1px solid rgba(200,255,87,0.2);padding:3px 8px;border-radius:3px;letter-spacing:0.5px;white-space:nowrap}
+body.light .sec-tag{background:rgba(58,138,0,0.08);border-color:rgba(58,138,0,0.2)}
+.sec-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;letter-spacing:-1px}
+.sec-line{flex:1;height:1px;background:var(--br);min-width:20px}
+
+/* ── EXPERIENCE ── */
+.exp-timeline{position:relative;padding-left:2rem}
+.exp-timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--br)}
+.exp-item{position:relative;margin-bottom:2.5rem}
+.exp-item:last-child{margin-bottom:0}
+.exp-dot{position:absolute;left:-2rem;top:6px;width:15px;height:15px;border-radius:50%;border:2px solid var(--ink);background:var(--ink4);transition:background 0.2s}
+body.light .exp-dot{border-color:var(--ink2)}
+.exp-item.current .exp-dot{background:var(--lime)}
+.exp-current-badge{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--lime);background:rgba(200,255,87,0.08);border:1px solid rgba(200,255,87,0.2);padding:2px 7px;border-radius:3px;margin-bottom:6px;display:inline-block;letter-spacing:0.5px}
+body.light .exp-current-badge{background:rgba(58,138,0,0.08);border-color:rgba(58,138,0,0.2)}
+.exp-header{display:flex;justify-content:space-between;gap:1rem;margin-bottom:4px;flex-wrap:wrap;align-items:flex-start}
+.exp-role{font-size:20px;font-weight:800;letter-spacing:-0.3px}
+.exp-company{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cyan);margin-top:2px;margin-bottom:8px}
+.exp-date-badge{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt3);background:var(--ink3);border:1px solid var(--br);padding:4px 10px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+.exp-desc{font-size:15px;color:var(--txt2);line-height:1.8;margin-bottom:1rem}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px}
+.exp-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt3);background:var(--ink3);border:1px solid var(--br);padding:3px 10px;border-radius:3px}
+body.light .exp-tag{background:var(--ink3)}
+
+/* ── PROJECTS ── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.proj-card{background:var(--ink2);border:1px solid var(--br);border-radius:14px;overflow:hidden;transition:border-color 0.2s,transform 0.15s;display:flex;flex-direction:column}
+body.light .proj-card{background:var(--ink3)}
+.proj-card:hover{border-color:rgba(200,255,87,0.3);transform:translateY(-3px)}
+body.light .proj-card:hover{border-color:rgba(58,138,0,0.35)}
+.proj-thumb{width:100%;height:150px;background:linear-gradient(135deg,var(--ink3),var(--ink2));display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--br);position:relative;overflow:hidden;padding:18px}
+body.light .proj-thumb{background:linear-gradient(135deg,var(--ink4),var(--ink3))}
+.proj-thumb::before{content:'';position:absolute;inset:auto -20% -55% -20%;height:92px;background:radial-gradient(ellipse at center,var(--thumb-glow,rgba(200,255,87,0.22)),transparent 68%);opacity:0.75}
+.repo-visual{position:relative;width:100%;height:100%;border:1px solid rgba(255,255,255,0.1);border-radius:8px;background:rgba(10,10,15,0.72);box-shadow:0 18px 45px rgba(0,0,0,0.24);overflow:hidden}
+body.light .repo-visual{background:rgba(255,255,255,0.72);border-color:rgba(0,0,0,0.08);box-shadow:0 18px 38px rgba(0,0,0,0.08)}
+.repo-visual-bar{height:25px;border-bottom:1px solid var(--br);display:flex;align-items:center;gap:5px;padding:0 10px}
+.repo-visual-dot{width:7px;height:7px;border-radius:50%;background:var(--txt3)}
+.repo-visual-dot:nth-child(1){background:#ff5f57}
+.repo-visual-dot:nth-child(2){background:#ffbd2e}
+.repo-visual-dot:nth-child(3){background:#28c840}
+.repo-visual-body{height:calc(100% - 25px);display:grid;grid-template-columns:62px 1fr;align-items:center;gap:14px;padding:13px}
+.repo-visual-mark{width:58px;height:58px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:900;color:#0A0A0F;background:var(--thumb-color,var(--lime));box-shadow:0 0 28px var(--thumb-glow,rgba(200,255,87,0.25))}
+.repo-visual-lines{display:flex;flex-direction:column;gap:7px;min-width:0}
+.repo-visual-line{height:7px;border-radius:99px;background:var(--ink4);opacity:0.9}
+.repo-visual-line.accent{width:76%;background:var(--thumb-color,var(--lime))}
+.repo-visual-line.short{width:44%}
+.repo-visual-line.mid{width:62%}
+.repo-lang{position:absolute;left:12px;bottom:9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2);display:flex;align-items:center;gap:5px;max-width:calc(100% - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.repo-lang-dot{width:7px;height:7px;border-radius:50%;background:var(--thumb-color,var(--lime));flex-shrink:0}
+.proj-thumb-live{position:absolute;top:8px;right:8px;display:flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;color:var(--cyan);background:rgba(0,229,204,0.1);border:1px solid rgba(0,229,204,0.25);padding:3px 7px;border-radius:4px}
+.proj-thumb-live-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:pulse 1.8s infinite}
+.proj-body{padding:1.2rem;flex:1;display:flex;flex-direction:column;gap:8px}
+.proj-meta-row{display:flex;align-items:center;justify-content:space-between}
+.proj-tag{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;background:rgba(200,255,87,0.08);color:var(--lime);border:1px solid rgba(200,255,87,0.2);padding:2px 7px;border-radius:3px}
+body.light .proj-tag{background:rgba(58,138,0,0.08);border-color:rgba(58,138,0,0.2)}
+.proj-title{font-size:19px;font-weight:800;letter-spacing:-0.3px}
+.proj-desc{font-size:15px;color:var(--txt2);line-height:1.7}
+.proj-detail{font-size:13px;color:var(--txt3);line-height:1.65;padding:0.8rem;background:var(--ink3);border-radius:6px;border:1px solid var(--br)}
+body.light .proj-detail{background:var(--ink4)}
+.proj-stack{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+.stack-pill{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt3);background:var(--ink3);padding:3px 9px;border-radius:3px;border:1px solid var(--br)}
+body.light .stack-pill{background:var(--ink4)}
+.proj-actions{display:flex;gap:7px;padding:0 1.2rem 1.2rem;flex-wrap:wrap}
+.proj-btn{display:flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;padding:0.55rem 1.1rem;border-radius:5px;transition:all 0.15s;border:1px solid var(--br)}
+.proj-btn.gh{color:var(--txt2);background:var(--ink3)}
+body.light .proj-btn.gh{background:var(--ink4)}
+.proj-btn.gh:hover{color:var(--lime);border-color:rgba(200,255,87,0.3)}
+.proj-btn.demo{color:var(--cyan);background:rgba(0,229,204,0.07);border-color:rgba(0,229,204,0.2)}
+.proj-btn.demo:hover{background:rgba(0,229,204,0.14)}
+.proj-btn svg{width:11px;height:11px;flex-shrink:0}
+
+/* ── SKILLS ── */
+.skills-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem}
+.skill-cat-title{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.skill-chips{display:flex;flex-wrap:wrap;gap:8px}
+.skill-chip{display:flex;align-items:center;gap:8px;background:var(--ink2);border:1px solid var(--br);border-radius:8px;padding:0.5rem 0.9rem;transition:border-color 0.2s}
+body.light .skill-chip{background:var(--ink3)}
+.skill-chip:hover{border-color:rgba(200,255,87,0.3)}
+body.light .skill-chip:hover{border-color:rgba(58,138,0,0.3)}
+.skill-chip-name{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--txt)}
+.sdots{display:flex;gap:3px}
+.sd{width:5px;height:5px;border-radius:50%;background:var(--ink4)}
+.sd.on{background:var(--lime)}
+.soft-title{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:1px;text-transform:uppercase;margin-top:2rem;margin-bottom:12px}
+.soft-row{display:flex;flex-wrap:wrap;gap:8px}
+.soft-chip{font-size:15px;font-weight:600;color:var(--txt2);background:var(--ink2);border:1px solid var(--br);padding:0.45rem 1rem;border-radius:8px}
+body.light .soft-chip{background:var(--ink3)}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,0.85fr);gap:18px;align-items:stretch}
+.contact-card{background:var(--ink2);border:1px solid var(--br);border-radius:12px;padding:1.5rem}
+body.light .contact-card{background:var(--ink3)}
+.contact-card.primary{padding:1.8rem}
+.contact-card-title{font-size:22px;font-weight:900;margin-bottom:0.35rem;letter-spacing:-0.4px}
+.contact-card-sub{font-size:15px;color:var(--txt2);margin-bottom:1.35rem;line-height:1.7;max-width:560px}
+.contact-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.clink{display:flex;align-items:center;gap:11px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--txt2);background:var(--ink3);border:1px solid var(--br);border-radius:8px;padding:0.85rem;transition:border-color 0.15s,color 0.15s,transform 0.15s;min-width:0}
+body.light .clink{background:var(--ink4)}
+.clink:hover{color:var(--lime);border-color:rgba(200,255,87,0.28);transform:translateY(-1px)}
+.clink svg{width:15px;height:15px;flex-shrink:0;color:var(--cyan)}
+.clink span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.facts{display:flex;flex-direction:column;gap:9px;margin-top:0.25rem}
+.fact{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;font-size:14px;padding:0.76rem 0;border-bottom:1px solid var(--br)}
+.fact:last-child{border:none}
+.fact-label{color:var(--txt2)}
+.fact-value{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt);text-align:right}
+.fact-value.open{color:var(--lime)}
+.avail-card{background:rgba(200,255,87,0.04);border:1px solid rgba(200,255,87,0.15);border-radius:12px;padding:1.4rem 1.5rem;grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+body.light .avail-card{background:rgba(58,138,0,0.04);border-color:rgba(58,138,0,0.18)}
+.avail-title{font-size:15px;font-weight:800;color:var(--lime);margin-bottom:0.3rem}
+.avail-sub{font-size:13px;color:var(--txt2)}
+
+/* ── FOOTER ── */
+.pub-footer{padding:1.5rem 0;border-top:1px solid var(--br);background:var(--ink2)}
+body.light .pub-footer{background:var(--ink3)}
+.footer-inner{width:100%;padding:0 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+.footer-mono{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--txt3)}
+.footer-mono span{color:var(--lime)}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+
+/* ── Large tablets / small laptops 768–1024px ── */
+@media(max-width:1024px){
+  
+  .hero-inner{grid-template-columns:1fr 260px;gap:1.5rem}
+  .nav2-inner{justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .pub-tab{padding:0.85rem 1.2rem}
+}
+
+/* ── Tablets 600–768px ── */
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-name{font-size:clamp(2rem,9vw,3rem)}
+  .nav2-inner{justify-content:flex-start}
+  .pub-tab{padding:0.8rem 1rem;font-size:10px}
+  .tab-panel{padding:2rem 0}
+  .nav1-inner,.hero-inner,.nav2-inner,.panel-inner,.footer-inner{padding-left:1.5rem;padding-right:1.5rem}
+  .sec-header{margin-bottom:1.8rem}
+  .projects-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .skills-cats{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .contact-links{grid-template-columns:1fr 1fr}
+  .container{padding:0 1.2rem}
+}
+
+/* ── Mobile 480–600px ── */
+@media(max-width:600px){
+  .nav1-inner{padding:0 1rem}
+  .nav-brand{font-size:12px}
+  .hero{padding:2.5rem 0}
+  .hero-inner{padding:0 1rem}
+  .hero-name-row{gap:0.9rem}
+  .hero-avatar{width:56px;height:56px}
+  .hero-bio{font-size:13px}
+  .hero-ctas{gap:8px}
+  .btn-lime,.btn-outline{font-size:10px;padding:0.5rem 1rem}
+  .panel-inner{padding:0 1rem}
+  .pub-tab{padding:0.75rem 0.8rem;font-size:10px;letter-spacing:0}
+  .projects-grid{grid-template-columns:1fr}
+  .skills-cats{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .contact-links{grid-template-columns:1fr}
+  .avail-card{align-items:flex-start;flex-direction:column}
+  .proj-actions{gap:6px}
+  .proj-btn{font-size:10px;padding:0.4rem 0.75rem}
+  .footer-inner{flex-direction:column;text-align:center;gap:4px}
+}
+
+/* ── Small mobile < 380px ── */
+@media(max-width:380px){
+  .hero-avatar{width:48px;height:48px}
+  .hero-name{font-size:2rem}
+  .pub-tab{padding:0.7rem 0.6rem;font-size:9px}
+  .nav1-inner{gap:6px}
+  .theme-btn span{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV 1 -->
+<nav class="nav1">
+  <div class="nav1-inner">
+    <div class="nav-brand">khantmaung<span>.dev</span></div>
+    <div class="nav1-right">
+      <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">
+        <svg id="theme-icon" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.1 3.1l1.1 1.1M11.8 11.8l1.1 1.1M3.1 12.9l1.1-1.1M11.8 4.2l1.1-1.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        <span id="theme-label">light</span>
+      </button>
+      <button class="hire-btn" onclick="switchTab('contact')">hire me →</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="status-pill"><span class="pulse"></span>available · remote / on-site · Pathum Thani, TH</div>
+      <div class="hero-name-row">
+        <label for="photo-input" title="click to upload your photo">
+          <div class="hero-avatar" id="hero-avatar">
+            <span class="av-init" id="av-init">KM</span>
+            <img id="hero-photo" alt="Khant Maung"/>
+            <span class="av-hover">📷</span>
+          </div>
+        </label>
+        <input type="file" id="photo-input" accept="image/*" style="display:none"/>
+        <div class="hero-name">Khant<br>Maung<span class="accent">.</span></div>
+      </div>
+      <div class="hero-role mono">// <span class="hl">fullstack developer</span> · entry level</div>
+      <p class="hero-bio">Junior Full Stack Developer building and deploying real-world web applications, including airline booking, CMS, and enterprise management systems. Skilled in React, Node.js, PostgreSQL, API design, authentication, and end-to-end delivery.</p>
+      <div class="hero-ctas">
+        <button class="btn-lime" onclick="switchTab('projects')">view projects →</button>
+        <a class="btn-outline" href="Khant_Maung_CV.pdf" download>download cv</a>
+        <a class="btn-outline" href="https://khantmaung.com" target="_blank" rel="noopener noreferrer">website ↗</a>
+        <a class="btn-outline" href="https://github.com/Khant26" target="_blank" rel="noopener noreferrer">github ↗</a>
+        <a class="btn-outline" href="mailto:khantmg262626@gmail.com">email me</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="ov-card">
+        <div class="ov-label">// <span class="ov-hl">github activity</span></div>
+        <div class="ov-username">@Khant26</div>
+        <div class="ov-grid" id="ov-grid"></div>
+      </div>
+      <div class="ov-stat-row">
+        <div class="ov-stat"><div class="ov-stat-label">experience</div><div class="ov-stat-val lime">1 Year</div></div>
+        <div class="ov-stat"><div class="ov-stat-label">projects</div><div class="ov-stat-val cyan">4</div></div>
+      </div>
+      <div class="ov-big">
+        <div class="ov-big-label">// companies worked at</div>
+        <div class="ov-companies">
+          <span class="ov-company-tag">Civil Master Solution</span>
+          <span class="ov-company-tag">Brillar Company</span>
+          <span class="ov-company-tag">Freelance</span>
+        </div>
+      </div>
+      <div class="ov-big">
+        <div class="ov-big-label">// contributions</div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.7;margin-top:3px">263 contributions in the last year</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV 2 -->
+<nav class="nav2">
+  <div class="nav2-inner">
+    <button class="pub-tab active" id="tab-exp"      onclick="switchTab('exp')">work experience</button>
+    <button class="pub-tab"        id="tab-projects"  onclick="switchTab('projects')">projects</button>
+    <button class="pub-tab"        id="tab-skills"    onclick="switchTab('skills')">skills</button>
+    <button class="pub-tab"        id="tab-contact"   onclick="switchTab('contact')">contact</button>
+  </div>
+</nav>
+
+<!-- TAB PANELS -->
+<div class="tab-panels">
+
+  <!-- EXPERIENCE -->
+  <div class="tab-panel active" id="panel-exp">
+    <div class="panel-inner">
+      <div class="sec-header"><span class="sec-tag">// experience</span><div class="sec-title">Work Experience</div><div class="sec-line"></div></div>
+      <div class="exp-timeline" id="exp-list"></div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="tab-panel" id="panel-projects">
+    <div class="panel-inner">
+      <div class="sec-header"><span class="sec-tag">// projects</span><div class="sec-title">Projects</div><div class="sec-line"></div></div>
+      <div class="projects-grid" id="proj-list"></div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="tab-panel" id="panel-skills">
+    <div class="panel-inner">
+      <div class="sec-header"><span class="sec-tag">// skills</span><div class="sec-title">Skills &amp; Expertise</div><div class="sec-line"></div></div>
+      <div class="skills-cats" id="skills-list"></div>
+      <div class="soft-title">Soft Skills</div>
+      <div class="soft-row" id="soft-list"></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="tab-panel" id="panel-contact">
+    <div class="panel-inner">
+      <div class="sec-header"><span class="sec-tag">// contact</span><div class="sec-title">Get In Touch</div><div class="sec-line"></div></div>
+      <div class="contact-grid">
+        <div class="contact-card primary">
+          <div class="contact-card-title">let's connect</div>
+          <div class="contact-card-sub">Open to full-time, freelance, and collaborative projects. Fast reply guaranteed.</div>
+          <div class="contact-links">
+          <a class="clink" href="mailto:khantmg262626@gmail.com">
+            <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="2.5" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.2"/></svg>
+            <span>khantmg262626@gmail.com</span>
+          </a>
+          <a class="clink" href="tel:+66930470721">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 2h3l1 3-1.5 1.5c1 2 2 3 4 4L10 9l3 1v3c-7 1-13-5-11-11z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span>+66 93 047 0721</span>
+          </a>
+          <a class="clink" href="https://github.com/Khant26" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 14 14" fill="none"><path d="M7 1C3.69 1 1 3.69 1 7c0 2.65 1.72 4.9 4.1 5.69.3.06.41-.13.41-.29v-1.02c-1.67.36-2.02-.8-2.02-.8-.27-.69-.67-.87-.67-.87-.55-.37.04-.36.04-.36.6.04.92.62.92.62.54.93 1.41.66 1.76.5.05-.39.21-.66.38-.81-1.34-.15-2.74-.67-2.74-2.97 0-.66.23-1.19.62-1.61-.06-.15-.27-.76.06-1.59 0 0 .51-.16 1.66.62A5.8 5.8 0 017 4.9c.51 0 1.03.07 1.51.2 1.15-.78 1.66-.62 1.66-.62.33.83.12 1.44.06 1.59.39.42.62.95.62 1.61 0 2.31-1.41 2.82-2.75 2.97.22.19.41.56.41 1.13v1.67c0 .16.11.35.41.29A6.001 6.001 0 0013 7c0-3.31-2.69-6-6-6z" stroke="currentColor" stroke-width="1.1"/></svg>
+            <span>github.com/Khant26</span>
+          </a>
+          <a class="clink" href="https://khantmaung.com" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 7h11M7 1.5c1.4 1.5 2.1 3.3 2.1 5.5S8.4 11 7 12.5C5.6 11 4.9 9.2 4.9 7S5.6 3 7 1.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span>khantmaung.com</span>
+          </a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-title">quick facts</div>
+          <div class="facts">
+            <div class="fact"><span class="fact-label">location</span><span class="fact-value">Pathum Thani, TH</span></div>
+            <div class="fact"><span class="fact-label">timezone</span><span class="fact-value">UTC+7 (ICT)</span></div>
+            <div class="fact"><span class="fact-label">availability</span><span class="fact-value open">open now</span></div>
+            <div class="fact"><span class="fact-label">preferred stack</span><span class="fact-value">React + Node.js</span></div>
+            <div class="fact"><span class="fact-label">education</span><span class="fact-value">BSc ICT · 2026</span></div>
+          </div>
+        </div>
+        <div class="avail-card">
+          <div>
+          <div class="avail-title">ready to build together?</div>
+          <div class="avail-sub">Whether it's a freelance sprint, full-time role, or a startup — let's talk about what you're building.</div>
+          </div>
+          <a class="btn-lime" href="mailto:khantmg262626@gmail.com?subject=Let%27s%20Work%20Together" style="display:inline-flex">send email →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="pub-footer">
+  <div class="footer-inner">
+    <div class="footer-mono"><span>khantmaung.dev</span> · fullstack developer</div>
+    <div class="footer-mono">Pathum Thani, TH · <span>2026</span></div>
+  </div>
+</footer>
+
+<script>
+/* ══════════ DATA ══════════ */
+const GITHUB_USERNAME = 'Khant26';
+const GITHUB_API = `https://api.github.com/users/${GITHUB_USERNAME}`;
+const GITHUB_CONTRIBUTIONS_LAST_YEAR = 263;
+
+const DATA = {
+  experience: [
+    {id:1, role:'FullStack Developer (Freelance)', company:'Independent', date:'2024 — Current', current:true,
+     desc:'Built and deployed real-world web applications including an airline booking platform, ERP-style company management system, event booking platform, and CMS. Covered authentication, booking logic, API design, dashboards, and deployment architecture.',
+     tags:['React.js','Node.js','Express.js','Django','PostgreSQL','MongoDB','JWT Auth','Nginx']},
+    {id:2, role:'FullStack Developer', company:'Civil Master Solution', date:'2025 — 2026', current:false,
+     desc:'Built an admin dashboard for blogs and project portfolios using React, Tailwind CSS, and Django. Implemented role-based access control, RESTful APIs for content creation and publishing, dynamic UI components, and deployments on Vercel and Render.',
+     tags:['React.js','Tailwind CSS','Django','RESTful APIs','RBAC','Vercel','Render']},
+    {id:3, role:'Test Automation Engineer', company:'Brillar Company', date:'Early 2025', current:false,
+     desc:'Built and executed automated test cases using Tosca, reducing manual testing effort. Detected and reported critical bugs, performed regression and functional testing, and collaborated with developers to improve CI/CD quality assurance workflows.',
+     tags:['Tosca','Test Automation','Regression Testing','Functional Testing','Bug Reporting','QA']}
+  ],
+  projects: [
+    {id:1, title:'Real-Time Airline Booking Platform', tag:'Booking', live:false,
+     desc:'Full booking workflow with dynamic flight search, protected user sessions, and booking history.',
+     detail:'Implemented JWT authentication, protected routes, RESTful booking APIs, pricing calculation, global state management, currency conversion, loading states, and reverse proxy deployment architecture.',
+     stack:['React.js','Node.js','Express.js','PostgreSQL','JWT Auth','Nginx'],
+     github:'https://github.com/Khant26/AirTicket_Frontend_FlyQM', demo:''},
+    {id:2, title:'Enterprise Management System', tag:'ERP-style', live:false,
+     desc:'Internal company management platform with role-based access and operational dashboards.',
+     detail:'Developed employee management, performance tracking, reporting, meeting and event scheduling, backend business logic, and admin views for monitoring company workflows.',
+     stack:['React.js','Node.js','Express.js','PostgreSQL','RBAC','REST API'],
+     github:'https://github.com/Khant26/company-management', demo:''},
+    {id:3, title:'Event Booking & Ticketing Platform', tag:'Ticketing', live:false,
+     desc:'Full-stack event platform for booking tickets, creating events, and managing user dashboards.',
+     detail:'Implemented authentication, user roles, ticket booking, event creation, booking APIs, validation, and error handling for reliable booking operations.',
+     stack:['React.js','Node.js','Express.js','MongoDB','JWT Auth','Tailwind CSS'],
+     github:'https://github.com/Khant26/Ticketany_Frontend', demo:''},
+    {id:4, title:'Content Management System', tag:'CMS', live:true,
+     desc:'CMS for managing blogs and project content with admin controls.',
+     detail:'Built with React, Tailwind CSS, and Django. Added admin dashboard, role-based access control, RESTful APIs, and deployments using Vercel for frontend and Render for backend.',
+     stack:['React.js','Tailwind CSS','Django','REST API','RBAC','Vercel','Render'],
+     github:'https://github.com/Khant26/cms_frontend', demo:''}
+  ],
+  skills:{
+    frontend:[{name:'React.js',level:5},{name:'Tailwind CSS',level:5},{name:'JavaScript',level:4},{name:'HTML / CSS',level:3}],
+    backend:[{name:'Node.js',level:5},{name:'Express.js',level:5},{name:'Django',level:4},{name:'Python',level:4}],
+    databases:[{name:'PostgreSQL',level:5},{name:'MongoDB',level:4}],
+    tools:[{name:'Git',level:5},{name:'RESTful APIs',level:4},{name:'Tosca (QA)',level:4},{name:'Reverse Proxy (Nginx)',level:4}]
+  },
+  soft:['Problem Solving','Team Communication','Time Management','Critical Thinking','Project Management']
+};
+
+const PROJECT_META = {
+  airticket_frontend_flyqm: {
+    title:'Real-Time Airline Booking Platform',
+    tag:'Booking',
+    desc:'Full booking workflow with dynamic flight search, protected user sessions, and booking history.',
+    detail:'Implemented JWT authentication, protected routes, RESTful booking APIs, pricing calculation, global state management, currency conversion, loading states, and reverse proxy deployment architecture.',
+    stack:['React.js','Node.js','Express.js','PostgreSQL','JWT Auth','Nginx']
+  },
+  'company-management': {
+    title:'Enterprise Management System',
+    tag:'ERP-style',
+    desc:'Internal company management platform with role-based access and operational dashboards.',
+    detail:'Developed employee management, performance tracking, reporting, meeting and event scheduling, backend business logic, and admin views for monitoring company workflows.',
+    stack:['React.js','Node.js','Express.js','PostgreSQL','RBAC','REST API']
+  },
+  ticketany_frontend: {
+    title:'Event Booking & Ticketing Platform',
+    tag:'Ticketing',
+    desc:'Full-stack event platform for booking tickets, creating events, and managing user dashboards.',
+    detail:'Implemented authentication, user roles, ticket booking, event creation, booking APIs, validation, and error handling for reliable booking operations.',
+    stack:['React.js','Node.js','Express.js','MongoDB','JWT Auth','Tailwind CSS']
+  },
+  cms_frontend: {
+    title:'Content Management System',
+    tag:'CMS',
+    desc:'CMS for managing blogs and project content with admin controls.',
+    detail:'Built with React, Tailwind CSS, and Django. Added admin dashboard, role-based access control, RESTful APIs, and deployments using Vercel for frontend and Render for backend.',
+    stack:['React.js','Tailwind CSS','Django','REST API','RBAC','Vercel','Render']
+  }
+};
+
+function escapeHTML(value){
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  }[ch]));
+}
+
+function formatRepoName(name){
+  return name
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, ch => ch.toUpperCase());
+}
+
+const LANGUAGE_COLORS = {
+  JavaScript:'#f7df1e',
+  TypeScript:'#3178c6',
+  Python:'#4b8bbe',
+  HTML:'#e34c26',
+  CSS:'#563d7c',
+  Java:'#f89820',
+  PHP:'#777bb4',
+  Go:'#00add8',
+  Ruby:'#cc342d',
+  Vue:'#42b883',
+  Shell:'#89e051'
+};
+
+function getProjectInitials(title){
+  const words = title.replace(/[^a-zA-Z0-9 ]/g, ' ').trim().split(/\s+/).filter(Boolean);
+  if(!words.length) return 'GH';
+  if(words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return words.slice(0, 2).map(word => word[0]).join('').toUpperCase();
+}
+
+function getProjectAccent(project){
+  return LANGUAGE_COLORS[project.language] || LANGUAGE_COLORS[project.tag] || '#C8FF57';
+}
+
+function hexToGlow(hex){
+  const clean = hex.replace('#', '');
+  const value = clean.length === 3 ? clean.split('').map(ch => ch + ch).join('') : clean;
+  const r = parseInt(value.slice(0, 2), 16);
+  const g = parseInt(value.slice(2, 4), 16);
+  const b = parseInt(value.slice(4, 6), 16);
+  return `rgba(${r},${g},${b},0.28)`;
+}
+
+function renderProjectVisual(project){
+  const color = getProjectAccent(project);
+  const style = `--thumb-color:${color};--thumb-glow:${hexToGlow(color)}`;
+  const label = project.language || project.tag || 'Repository';
+  return `
+    <div class="repo-visual" style="${style}">
+      <div class="repo-visual-bar">
+        <span class="repo-visual-dot"></span>
+        <span class="repo-visual-dot"></span>
+        <span class="repo-visual-dot"></span>
+      </div>
+      <div class="repo-visual-body">
+        <div class="repo-visual-mark">${escapeHTML(getProjectInitials(project.title))}</div>
+        <div class="repo-visual-lines">
+          <span class="repo-visual-line accent"></span>
+          <span class="repo-visual-line mid"></span>
+          <span class="repo-visual-line short"></span>
+        </div>
+      </div>
+      <div class="repo-lang"><span class="repo-lang-dot"></span>${escapeHTML(label)}</div>
+    </div>`;
+}
+
+function cleanDemoUrl(url){
+  const value = String(url || '').trim();
+  if(!value || value === '#') return '';
+  if(/^https?:\/\//i.test(value)) return value;
+  return '';
+}
+
+function repoToProject(repo){
+  const key = repo.name.toLowerCase();
+  const meta = PROJECT_META[key] || {};
+  const topics = Array.isArray(repo.topics) ? repo.topics : [];
+  const stack = meta.stack || [repo.language, ...topics.slice(0, 5)].filter(Boolean);
+  const demoUrl = cleanDemoUrl(repo.homepage);
+  return {
+    id: repo.id,
+    title: meta.title || formatRepoName(repo.name),
+    tag: meta.tag || repo.language || 'GitHub Repo',
+    language: repo.language || meta.tag || '',
+    live: Boolean(demoUrl),
+    desc: meta.desc || repo.description || 'Public GitHub repository from Khant Maung.',
+    detail: meta.detail || `Updated ${new Date(repo.updated_at).toLocaleDateString()} · ${repo.stargazers_count} stars · ${repo.forks_count} forks`,
+    stack: stack.length ? stack : ['GitHub'],
+    github: repo.html_url,
+    demo: demoUrl
+  };
+}
+
+/* ══════════ RENDER EXPERIENCE ══════════ */
+function renderExp(){
+  document.getElementById('exp-list').innerHTML = DATA.experience.map(e=>`
+    <div class="exp-item ${e.current?'current':''}">
+      <div class="exp-dot"></div>
+      ${e.current?'<div class="exp-current-badge">CURRENT</div>':''}
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">${e.role}</div>
+          <div class="exp-company">▸ ${e.company}</div>
+        </div>
+        <div class="exp-date-badge">${e.date}</div>
+      </div>
+      <p class="exp-desc">${e.desc}</p>
+      <div class="exp-tags">${e.tags.map(t=>`<span class="exp-tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+/* ══════════ RENDER PROJECTS ══════════ */
+const ghSVG = `<svg viewBox="0 0 14 14" fill="none"><path d="M7 1C3.69 1 1 3.69 1 7c0 2.65 1.72 4.9 4.1 5.69.3.06.41-.13.41-.29v-1.02c-1.67.36-2.02-.8-2.02-.8-.27-.69-.67-.87-.67-.87-.55-.37.04-.36.04-.36.6.04.92.62.92.62.54.93 1.41.66 1.76.5.05-.39.21-.66.38-.81-1.34-.15-2.74-.67-2.74-2.97 0-.66.23-1.19.62-1.61-.06-.15-.27-.76.06-1.59 0 0 .51-.16 1.66.62A5.8 5.8 0 017 4.9c.51 0 1.03.07 1.51.2 1.15-.78 1.66-.62 1.66-.62.33.83.12 1.44.06 1.59.39.42.62.95.62 1.61 0 2.31-1.41 2.82-2.75 2.97.22.19.41.56.41 1.13v1.67c0 .16.11.35.41.29A6 6 0 0013 7c0-3.31-2.69-6-6-6z" stroke="currentColor" stroke-width="1.2"/></svg>`;
+const extSVG = `<svg viewBox="0 0 14 14" fill="none"><path d="M6 2H3a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V8M9 1h4m0 0v4m0-4L6 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+
+function renderProjects(projects = DATA.projects){
+  document.getElementById('proj-list').innerHTML = projects.map(p=>`
+    <div class="proj-card">
+      <div class="proj-thumb">
+        ${renderProjectVisual(p)}
+        ${p.live?`<div class="proj-thumb-live"><span class="proj-thumb-live-dot"></span>live</div>`:''}
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta-row">
+          <span class="proj-tag">${escapeHTML(p.tag)}</span>
+        </div>
+        <div class="proj-title">${escapeHTML(p.title)}</div>
+        <p class="proj-desc">${escapeHTML(p.desc)}</p>
+        <div class="proj-detail">${escapeHTML(p.detail)}</div>
+        <div class="proj-stack">${p.stack.map(s=>`<span class="stack-pill">${escapeHTML(s)}</span>`).join('')}</div>
+      </div>
+      <div class="proj-actions">
+        ${p.github?`<a class="proj-btn gh" href="${escapeHTML(p.github)}" target="_blank" rel="noopener noreferrer">${ghSVG}github</a>`:''}
+        ${p.demo?`<a class="proj-btn demo" href="${escapeHTML(p.demo)}" target="_blank" rel="noopener noreferrer">${extSVG}live demo</a>`:''}
+      </div>
+    </div>`).join('');
+}
+
+/* ══════════ RENDER SKILLS ══════════ */
+function renderSkills(){
+  const catLabels={frontend:'Frontend',backend:'Backend',databases:'Databases',tools:'Tools & Other'};
+  document.getElementById('skills-list').innerHTML = Object.keys(DATA.skills).map(cat=>`
+    <div>
+      <div class="skill-cat-title">${catLabels[cat]||cat}</div>
+      <div class="skill-chips">
+        ${DATA.skills[cat].map(s=>`
+          <div class="skill-chip">
+            <div class="sdots">${[1,2,3,4,5].map(i=>`<span class="sd ${i<=s.level?'on':''}"></span>`).join('')}</div>
+            <span class="skill-chip-name">${s.name}</span>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+  document.getElementById('soft-list').innerHTML = DATA.soft.map(s=>`<div class="soft-chip">${s}</div>`).join('');
+}
+
+/* ══════════ TAB SWITCHING ══════════ */
+function switchTab(name){
+  ['exp','projects','skills','contact'].forEach(t=>{
+    document.getElementById('panel-'+t).classList.remove('active');
+    document.getElementById('tab-'+t).classList.remove('active');
+  });
+  document.getElementById('panel-'+name).classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+  document.querySelector('.nav2').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ══════════ THEME TOGGLE ══════════ */
+let isDark = true;
+function toggleTheme(){
+  isDark = !isDark;
+  document.body.classList.toggle('light', !isDark);
+  const lbl = document.getElementById('theme-label');
+  const ico = document.getElementById('theme-icon');
+  if(lbl) lbl.textContent = isDark ? 'light' : 'dark';
+  if(ico) ico.innerHTML = isDark
+    ? '<circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.1 3.1l1.1 1.1M11.8 11.8l1.1 1.1M3.1 12.9l1.1-1.1M11.8 4.2l1.1-1.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>'
+    : '<path d="M13 8.5A5.5 5.5 0 116.5 2a4 4 0 006.5 6.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>';
+}
+
+/* ══════════ PHOTO UPLOAD ══════════ */
+document.getElementById('photo-input').addEventListener('change', function(e){
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = document.getElementById('hero-photo');
+    const init = document.getElementById('av-init');
+    img.src = ev.target.result;
+    img.style.display = 'block';
+    if(init) init.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+});
+
+/* ══════════ GITHUB OVERVIEW ══════════ */
+function buildActivityGrid(events = []){
+  const el = document.getElementById('ov-grid'); if(!el) return;
+  const dayCounts = new Array(56).fill(0);
+  const now = new Date();
+  events.forEach(event => {
+    const created = new Date(event.created_at);
+    const ageDays = Math.floor((now - created) / 86400000);
+    if(ageDays >= 0 && ageDays < 56) dayCounts[55 - ageDays] += 1;
+  });
+  const max = Math.max(...dayCounts, 1);
+  let html='';
+  for(let i=0;i<56;i++){
+    const n = dayCounts[i];
+    const level = n === 0 ? 0 : Math.max(1, Math.ceil((n / max) * 4));
+    const l = level ? `l${level}` : '';
+    html+=`<div class="ov-cell ${l}"></div>`;
+  }
+  el.innerHTML=html;
+}
+
+function updateGitHubOverview(user, repos, events){
+  const username = document.querySelector('.ov-username');
+  if(username) username.textContent = `@${user.login}`;
+
+  const avatar = document.getElementById('hero-photo');
+  const init = document.getElementById('av-init');
+  if(avatar && user.avatar_url && !avatar.getAttribute('src')){
+    avatar.src = user.avatar_url;
+    avatar.style.display = 'block';
+    if(init) init.style.display = 'none';
+  }
+
+  const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+  const stats = document.querySelectorAll('.ov-stat');
+  if(stats[0]){
+    stats[0].querySelector('.ov-stat-label').textContent = 'public repos';
+    stats[0].querySelector('.ov-stat-val').textContent = user.public_repos;
+  }
+  if(stats[1]){
+    stats[1].querySelector('.ov-stat-label').textContent = 'experience';
+    stats[1].querySelector('.ov-stat-val').textContent = '1 yr';
+  }
+
+  const contributions = document.querySelector('.ov-big:last-child div[style]');
+  if(contributions){
+    contributions.textContent = `${GITHUB_CONTRIBUTIONS_LAST_YEAR} contributions in the last year`;
+  }
+
+  buildActivityGrid(events);
+}
+
+async function loadGitHubData(){
+  try{
+    const [userRes, repoRes, eventRes] = await Promise.all([
+      fetch(GITHUB_API),
+      fetch(`${GITHUB_API}/repos?per_page=100&sort=updated`),
+      fetch(`${GITHUB_API}/events/public?per_page=100`)
+    ]);
+    if(!userRes.ok || !repoRes.ok) throw new Error('GitHub API request failed');
+
+    const user = await userRes.json();
+    const repos = (await repoRes.json()).filter(repo => !repo.fork);
+    const events = eventRes.ok ? await eventRes.json() : [];
+    const cvRepoOrder = ['AirTicket_Frontend_FlyQM','company-management','Ticketany_Frontend','cms_frontend'];
+    const sortLiveFirst = (a, b) => {
+      const aLive = Boolean(cleanDemoUrl(a.homepage));
+      const bLive = Boolean(cleanDemoUrl(b.homepage));
+      if(aLive !== bLive) return aLive ? -1 : 1;
+      return new Date(b.updated_at) - new Date(a.updated_at);
+    };
+    const starredRepos = repos.filter(repo => repo.stargazers_count > 0).sort(sortLiveFirst);
+    const orderedRepos = [
+      ...cvRepoOrder.map(name => repos.find(repo => repo.name.toLowerCase() === name.toLowerCase())).filter(Boolean).sort(sortLiveFirst),
+      ...starredRepos.filter(repo => !cvRepoOrder.some(name => repo.name.toLowerCase() === name.toLowerCase()))
+    ].filter(repo => repo.stargazers_count > 0).sort(sortLiveFirst);
+
+    updateGitHubOverview(user, repos, events);
+    renderProjects(orderedRepos.map(repoToProject));
+  }catch(error){
+    console.warn('Using fallback portfolio data:', error);
+    buildActivityGrid();
+  }
+}
+
+/* ══════════ INIT ══════════ */
+renderExp();
+renderProjects();
+renderSkills();
+loadGitHubData();
+</script>
+</body>
+</html>
