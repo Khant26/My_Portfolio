@@ -49,7 +49,7 @@ a{text-decoration:none}
 }
 body.light .nav1{background:rgba(240,241,247,0.97)}
 .nav1-inner{
-  width:100%;padding:0 3rem;
+  width:100%;max-width:1200px;margin:0 auto;padding:0 3rem;
   height:100%;display:flex;align-items:center;justify-content:space-between
 }
 .nav-brand{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--lime)}
@@ -75,8 +75,8 @@ body.light .nav1{background:rgba(240,241,247,0.97)}
 ══════════════════════════════════════ */
 .hero{border-bottom:1px solid var(--br);padding:5rem 0}
 .hero-inner{
-  width:100%;padding:0 3rem;
-  display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center
+  width:100%;max-width:1200px;margin:0 auto;padding:0 3rem;
+  display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:3rem;align-items:center
 }
 /* left */
 .hero-left{}
@@ -98,7 +98,7 @@ body.light .status-pill{background:rgba(0,107,98,0.07);border-color:rgba(0,107,9
 }
 body.light .hero-avatar{border-color:rgba(58,138,0,0.35);background:var(--ink4)}
 .hero-avatar:hover{border-color:var(--lime)}
-.hero-avatar img{width:100%;height:100%;object-fit:cover;object-position:top;display:none;position:absolute;inset:0}
+.hero-avatar img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;position:absolute;inset:0}
 .av-init{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:900;color:var(--lime);z-index:1}
 .av-hover{position:absolute;inset:0;background:rgba(10,10,15,0.65);display:flex;align-items:center;justify-content:center;font-size:1rem;opacity:0;transition:opacity 0.2s;z-index:2}
 .hero-avatar:hover .av-hover{opacity:1}
@@ -150,7 +150,7 @@ body.light .ov-company-tag{background:var(--ink4)}
   background:var(--ink2);border-bottom:1px solid var(--br)
 }
 body.light .nav2{background:#fff}
-.nav2-inner{width:100%;padding:0 3rem;display:flex;justify-content:center}
+.nav2-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 3rem;display:flex;justify-content:center}
 .pub-tab{
   font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;
   color:var(--txt3);padding:1rem 2rem;
@@ -196,30 +196,30 @@ body.light .exp-current-badge{background:rgba(58,138,0,0.08);border-color:rgba(5
 body.light .exp-tag{background:var(--ink3)}
 
 /* ── PROJECTS ── */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .proj-card{background:var(--ink2);border:1px solid var(--br);border-radius:14px;overflow:hidden;transition:border-color 0.2s,transform 0.15s;display:flex;flex-direction:column}
 body.light .proj-card{background:var(--ink3)}
 .proj-card:hover{border-color:rgba(200,255,87,0.3);transform:translateY(-3px)}
 body.light .proj-card:hover{border-color:rgba(58,138,0,0.35)}
-.proj-thumb{width:100%;height:150px;background:linear-gradient(135deg,var(--ink3),var(--ink2));display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--br);position:relative;overflow:hidden;padding:18px}
+.proj-thumb{width:100%;height:190px;background:linear-gradient(135deg,var(--ink3),var(--ink2));display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--br);position:relative;overflow:hidden;padding:18px}
 body.light .proj-thumb{background:linear-gradient(135deg,var(--ink4),var(--ink3))}
 .proj-thumb::before{content:'';position:absolute;inset:auto -20% -55% -20%;height:92px;background:radial-gradient(ellipse at center,var(--thumb-glow,rgba(200,255,87,0.22)),transparent 68%);opacity:0.75}
-.repo-visual{position:relative;width:100%;height:100%;border:1px solid rgba(255,255,255,0.1);border-radius:8px;background:rgba(10,10,15,0.72);box-shadow:0 18px 45px rgba(0,0,0,0.24);overflow:hidden}
-body.light .repo-visual{background:rgba(255,255,255,0.72);border-color:rgba(0,0,0,0.08);box-shadow:0 18px 38px rgba(0,0,0,0.08)}
-.repo-visual-bar{height:25px;border-bottom:1px solid var(--br);display:flex;align-items:center;gap:5px;padding:0 10px}
-.repo-visual-dot{width:7px;height:7px;border-radius:50%;background:var(--txt3)}
-.repo-visual-dot:nth-child(1){background:#ff5f57}
-.repo-visual-dot:nth-child(2){background:#ffbd2e}
-.repo-visual-dot:nth-child(3){background:#28c840}
-.repo-visual-body{height:calc(100% - 25px);display:grid;grid-template-columns:62px 1fr;align-items:center;gap:14px;padding:13px}
-.repo-visual-mark{width:58px;height:58px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:900;color:#0A0A0F;background:var(--thumb-color,var(--lime));box-shadow:0 0 28px var(--thumb-glow,rgba(200,255,87,0.25))}
-.repo-visual-lines{display:flex;flex-direction:column;gap:7px;min-width:0}
-.repo-visual-line{height:7px;border-radius:99px;background:var(--ink4);opacity:0.9}
-.repo-visual-line.accent{width:76%;background:var(--thumb-color,var(--lime))}
-.repo-visual-line.short{width:44%}
-.repo-visual-line.mid{width:62%}
-.repo-lang{position:absolute;left:12px;bottom:9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2);display:flex;align-items:center;gap:5px;max-width:calc(100% - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.repo-lang-dot{width:7px;height:7px;border-radius:50%;background:var(--thumb-color,var(--lime));flex-shrink:0}
+.product-visual{position:relative;width:100%;height:100%;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(10,10,15,.78);box-shadow:0 18px 45px rgba(0,0,0,.24);overflow:hidden;color:var(--txt)}
+body.light .product-visual{background:rgba(255,255,255,.82);border-color:rgba(0,0,0,.08);box-shadow:0 18px 38px rgba(0,0,0,.08)}
+.product-topbar{height:34px;border-bottom:1px solid var(--br);display:flex;align-items:center;gap:9px;padding:0 12px}
+.product-brand{width:21px;height:21px;border-radius:6px;display:grid;place-items:center;background:var(--thumb-color);color:#0A0A0F;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:900}
+.product-url{height:8px;width:42%;border-radius:99px;background:var(--ink4)}
+.product-canvas{height:calc(100% - 34px);display:grid;grid-template-columns:72px 1fr}
+.product-sidebar{border-right:1px solid var(--br);padding:15px 11px;display:flex;flex-direction:column;gap:9px}
+.product-sidebar span{height:6px;border-radius:99px;background:var(--ink4)}
+.product-sidebar span:first-child{background:var(--thumb-color);opacity:.75}
+.product-content{padding:14px;min-width:0}
+.product-heading{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--thumb-color);margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.product-kpis span{height:28px;border:1px solid var(--br);border-radius:6px;background:var(--ink3)}
+.product-rows{display:flex;flex-direction:column;gap:5px}
+.product-row{display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt2);white-space:nowrap}
+.product-row::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--thumb-color);opacity:.8;flex-shrink:0}
 .proj-thumb-live{position:absolute;top:8px;right:8px;display:flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;color:var(--cyan);background:rgba(0,229,204,0.1);border:1px solid rgba(0,229,204,0.25);padding:3px 7px;border-radius:4px}
 .proj-thumb-live-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:pulse 1.8s infinite}
 .proj-body{padding:1.2rem;flex:1;display:flex;flex-direction:column;gap:8px}
@@ -286,7 +286,7 @@ body.light .avail-card{background:rgba(58,138,0,0.04);border-color:rgba(58,138,0
 /* ── FOOTER ── */
 .pub-footer{padding:1.5rem 0;border-top:1px solid var(--br);background:var(--ink2)}
 body.light .pub-footer{background:var(--ink3)}
-.footer-inner{width:100%;padding:0 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+.footer-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
 .footer-mono{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--txt3)}
 .footer-mono span{color:var(--lime)}
 
@@ -296,7 +296,7 @@ body.light .pub-footer{background:var(--ink3)}
 
 /* ── Large tablets / small laptops 768–1024px ── */
 @media(max-width:1024px){
-  
+
   .hero-inner{grid-template-columns:1fr 260px;gap:1.5rem}
   .nav2-inner{justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch}
   .pub-tab{padding:0.85rem 1.2rem}
@@ -312,7 +312,7 @@ body.light .pub-footer{background:var(--ink3)}
   .tab-panel{padding:2rem 0}
   .nav1-inner,.hero-inner,.nav2-inner,.panel-inner,.footer-inner{padding-left:1.5rem;padding-right:1.5rem}
   .sec-header{margin-bottom:1.8rem}
-  .projects-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+  .projects-grid{grid-template-columns:1fr}
   .skills-cats{grid-template-columns:1fr 1fr}
   .contact-grid{grid-template-columns:1fr}
   .contact-links{grid-template-columns:1fr 1fr}
@@ -377,22 +377,18 @@ body.light .pub-footer{background:var(--ink3)}
     <div class="hero-left">
       <div class="status-pill"><span class="pulse"></span>available · remote / on-site · Pathum Thani, TH</div>
       <div class="hero-name-row">
-        <label for="photo-input" title="click to upload your photo">
-          <div class="hero-avatar" id="hero-avatar">
-            <span class="av-init" id="av-init">KM</span>
-            <img id="hero-photo" alt="Khant Maung"/>
-            <span class="av-hover">📷</span>
-          </div>
-        </label>
-        <input type="file" id="photo-input" accept="image/*" style="display:none"/>
+        <a class="hero-avatar" id="hero-avatar" href="https://github.com/Khant26" target="_blank" rel="noopener noreferrer" aria-label="View Khant Maung on GitHub">
+          <span class="av-init" id="av-init">KM</span>
+          <img id="hero-photo" src="https://avatars.githubusercontent.com/u/133506936?v=4" alt="Khant Maung" onerror="this.style.display='none'"/>
+        </a>
         <div class="hero-name">Khant<br>Maung<span class="accent">.</span></div>
       </div>
-      <div class="hero-role mono">// <span class="hl">fullstack developer</span> · Junior level</div>
-      <p class="hero-bio">Junior Full Stack Developer building and deploying real-world web applications, including airline booking, CMS, and enterprise management systems. Skilled in React, Node.js, PostgreSQL, API design, authentication, and end-to-end delivery.</p>
+      <div class="hero-role mono">// <span class="hl">full-stack developer</span></div>
+      <p class="hero-bio">Full-stack developer with 1 year of professional experience building and deploying airline booking, CMS, and enterprise management systems. B.Sc. in Information and Communication Technology from Rangsit University, with hands-on experience in React, Node.js, Django, PostgreSQL, API design, authentication, and end-to-end delivery.</p>
       <div class="hero-ctas">
         <button class="btn-lime" onclick="switchTab('projects')">view projects →</button>
         <a class="btn-outline" href="Khant_Maung_CV.pdf" download>download cv</a>
-        <a class="btn-outline" href="https://khantmaung.com" target="_blank" rel="noopener noreferrer">website ↗</a>
+
         <a class="btn-outline" href="https://github.com/Khant26" target="_blank" rel="noopener noreferrer">github ↗</a>
         <a class="btn-outline" href="mailto:khantmg262626@gmail.com">email me</a>
       </div>
@@ -404,8 +400,8 @@ body.light .pub-footer{background:var(--ink3)}
         <div class="ov-grid" id="ov-grid"></div>
       </div>
       <div class="ov-stat-row">
-        <div class="ov-stat"><div class="ov-stat-label">experience</div><div class="ov-stat-val lime">1 Year</div></div>
-        <div class="ov-stat"><div class="ov-stat-label">projects</div><div class="ov-stat-val cyan">4</div></div>
+        <div class="ov-stat"><div class="ov-stat-label">full-stack experience</div><div class="ov-stat-val lime">1 yr</div></div>
+        <div class="ov-stat"><div class="ov-stat-label">education</div><div class="ov-stat-val cyan">B.Sc. ICT</div></div>
       </div>
       <div class="ov-big">
         <div class="ov-big-label">// companies worked at</div>
@@ -496,7 +492,7 @@ body.light .pub-footer{background:var(--ink3)}
             <div class="fact"><span class="fact-label">timezone</span><span class="fact-value">UTC+7 (ICT)</span></div>
             <div class="fact"><span class="fact-label">availability</span><span class="fact-value open">open now</span></div>
             <div class="fact"><span class="fact-label">preferred stack</span><span class="fact-value">React + Node.js</span></div>
-            <div class="fact"><span class="fact-label">education</span><span class="fact-value">BSc ICT · 2026</span></div>
+            <div class="fact"><span class="fact-label">education</span><span class="fact-value">B.Sc. ICT · Rangsit University</span></div>
           </div>
         </div>
         <div class="avail-card">
@@ -527,10 +523,10 @@ const GITHUB_API = `https://api.github.com/users/${GITHUB_USERNAME}`;
 
 const DATA = {
   experience: [
-    {id:1, role:'FullStack Developer (Freelance)', company:'Independent', date:'2024 — Current', current:true,
+    {id:1, role:'Freelance Full-Stack Developer', company:'Independent Projects', date:'2024 — Present', current:true,
      desc:'Built and deployed real-world web applications including an airline booking platform, ERP-style company management system, event booking platform, and CMS. Covered authentication, booking logic, API design, dashboards, and deployment architecture.',
      tags:['React.js','Node.js','Express.js','Django','PostgreSQL','MongoDB','JWT Auth','Nginx']},
-    {id:2, role:'FullStack Developer', company:'Civil Master Solution', date:'2025 — 2026', current:false,
+    {id:2, role:'Full-Stack Developer', company:'Civil Master Solution', date:'2025 — 2026', current:false,
      desc:'Built an admin dashboard for blogs and project portfolios using React, Tailwind CSS, and Django. Implemented role-based access control, RESTful APIs for content creation and publishing, dynamic UI components, and deployments on Vercel and Render.',
      tags:['React.js','Tailwind CSS','Django','RESTful APIs','RBAC','Vercel','Render']},
     {id:3, role:'Test Automation Engineer', company:'Brillar Company', date:'Early 2025', current:false,
@@ -648,23 +644,27 @@ function hexToGlow(hex){
 function renderProjectVisual(project){
   const color = getProjectAccent(project);
   const style = `--thumb-color:${color};--thumb-glow:${hexToGlow(color)}`;
-  const label = project.language || project.tag || 'Repository';
+  const visualRows = {
+    Booking:['Search flights','Select a fare','Confirm booking'],
+    'ERP-style':['Team overview','Performance tracking','Reports'],
+    Ticketing:['Discover events','Choose tickets','Secure checkout'],
+    CMS:['Draft content','Review changes','Publish']
+  };
+  const rows = visualRows[project.tag] || ['Responsive interface','Secure workflow','Live data'];
   return `
-    <div class="repo-visual" style="${style}">
-      <div class="repo-visual-bar">
-        <span class="repo-visual-dot"></span>
-        <span class="repo-visual-dot"></span>
-        <span class="repo-visual-dot"></span>
+    <div class="product-visual" style="${style}" aria-hidden="true">
+      <div class="product-topbar">
+        <span class="product-brand">${escapeHTML(getProjectInitials(project.title))}</span>
+        <span class="product-url"></span>
       </div>
-      <div class="repo-visual-body">
-        <div class="repo-visual-mark">${escapeHTML(getProjectInitials(project.title))}</div>
-        <div class="repo-visual-lines">
-          <span class="repo-visual-line accent"></span>
-          <span class="repo-visual-line mid"></span>
-          <span class="repo-visual-line short"></span>
+      <div class="product-canvas">
+        <div class="product-sidebar"><span></span><span></span><span></span><span></span></div>
+        <div class="product-content">
+          <div class="product-heading">${escapeHTML(project.title)}</div>
+          <div class="product-kpis"><span></span><span></span><span></span></div>
+          <div class="product-rows">${rows.map(row => `<div class="product-row">${escapeHTML(row)}</div>`).join('')}</div>
         </div>
       </div>
-      <div class="repo-lang"><span class="repo-lang-dot"></span>${escapeHTML(label)}</div>
     </div>`;
 }
 
@@ -781,20 +781,6 @@ function toggleTheme(){
     : '<path d="M13 8.5A5.5 5.5 0 116.5 2a4 4 0 006.5 6.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>';
 }
 
-/* ══════════ PHOTO UPLOAD ══════════ */
-document.getElementById('photo-input').addEventListener('change', function(e){
-  const file = e.target.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const img = document.getElementById('hero-photo');
-    const init = document.getElementById('av-init');
-    img.src = ev.target.result;
-    img.style.display = 'block';
-    if(init) init.style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-});
-
 /* ══════════ GITHUB OVERVIEW ══════════ */
 function buildActivityGrid(events = []){
   const el = document.getElementById('ov-grid'); if(!el) return;
@@ -828,16 +814,6 @@ function updateGitHubOverview(user, repos, events){
     if(init) init.style.display = 'none';
   }
 
-  const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-  const stats = document.querySelectorAll('.ov-stat');
-  if(stats[0]){
-    stats[0].querySelector('.ov-stat-label').textContent = 'public repos';
-    stats[0].querySelector('.ov-stat-val').textContent = user.public_repos;
-  }
-  if(stats[1]){
-    stats[1].querySelector('.ov-stat-label').textContent = 'featured projects';
-    stats[1].querySelector('.ov-stat-val').textContent = DATA.projects.length;
-  }
 
   const contributions = document.querySelector('.ov-big:last-child div[style]');
   if(contributions){
