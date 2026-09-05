@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Khant Maung is a full-stack developer in Pathum Thani, Thailand, building reliable web applications with React, Node.js, Django, PostgreSQL, and MongoDB."/>
+<meta name="author" content="Khant Maung"/>
+<meta name="robots" content="index,follow"/>
+<meta name="theme-color" content="#0A0A0F"/>
+<link rel="canonical" href="https://khantmaung.com/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Khant Maung - Full-Stack Developer"/>
+<meta property="og:description" content="Full-stack developer building production-minded web applications from frontend to deployment."/>
+<meta property="og:url" content="https://khantmaung.com/"/>
+<meta name="twitter:card" content="summary"/>
 <title>Khant Maung · Full-Stack Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Epilogue:wght@300;400;600;800;900&display=swap" rel="stylesheet"/>
 <style>
@@ -459,7 +469,7 @@ body.light .pub-footer{background:var(--ink3)}
       <div class="contact-grid">
         <div class="contact-card primary">
           <div class="contact-card-title">let's connect</div>
-          <div class="contact-card-sub">Open to full-time, freelance, and collaborative projects. Fast reply guaranteed.</div>
+          <div class="contact-card-sub">Open to full-time, freelance, and collaborative projects. Tell me what you are building and how I can help.</div>
           <div class="contact-links">
           <a class="clink" href="mailto:khantmg262626@gmail.com">
             <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="2.5" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 4l6 4 6-4" stroke="currentColor" stroke-width="1.2"/></svg>
@@ -513,7 +523,7 @@ body.light .pub-footer{background:var(--ink3)}
 /* ══════════ DATA ══════════ */
 const GITHUB_USERNAME = 'Khant26';
 const GITHUB_API = `https://api.github.com/users/${GITHUB_USERNAME}`;
-const GITHUB_CONTRIBUTIONS_LAST_YEAR = 263;
+
 
 const DATA = {
   experience: [
@@ -537,17 +547,17 @@ const DATA = {
      desc:'Internal company management platform with role-based access and operational dashboards.',
      detail:'Developed employee management, performance tracking, reporting, meeting and event scheduling, backend business logic, and admin views for monitoring company workflows.',
      stack:['React.js','Node.js','Express.js','PostgreSQL','RBAC','REST API'],
-     github:'https://github.com/Khant26/company-management', demo:''},
+     github:'', demo:''},
     {id:3, title:'Event Booking & Ticketing Platform', tag:'Ticketing', live:false,
      desc:'Full-stack event platform for booking tickets, creating events, and managing user dashboards.',
      detail:'Implemented authentication, user roles, ticket booking, event creation, booking APIs, validation, and error handling for reliable booking operations.',
      stack:['React.js','Node.js','Express.js','MongoDB','JWT Auth','Tailwind CSS'],
-     github:'https://github.com/Khant26/Ticketany_Frontend', demo:''},
+     github:'https://github.com/Khant26/Ticketany_Frontend', demo:'https://ticketsany.com/'},
     {id:4, title:'Content Management System', tag:'CMS', live:true,
      desc:'CMS for managing blogs and project content with admin controls.',
      detail:'Built with React, Tailwind CSS, and Django. Added admin dashboard, role-based access control, RESTful APIs, and deployments using Vercel for frontend and Render for backend.',
      stack:['React.js','Tailwind CSS','Django','REST API','RBAC','Vercel','Render'],
-     github:'https://github.com/Khant26/cms_frontend', demo:''}
+     github:'https://github.com/Khant26/cms_frontend', demo:'https://www.civilmastersolution.com/'}
   ],
   skills:{
     frontend:[{name:'React.js',level:5},{name:'Tailwind CSS',level:5},{name:'JavaScript',level:4},{name:'HTML / CSS',level:3}],
@@ -825,13 +835,13 @@ function updateGitHubOverview(user, repos, events){
     stats[0].querySelector('.ov-stat-val').textContent = user.public_repos;
   }
   if(stats[1]){
-    stats[1].querySelector('.ov-stat-label').textContent = 'experience';
-    stats[1].querySelector('.ov-stat-val').textContent = '1 yr';
+    stats[1].querySelector('.ov-stat-label').textContent = 'featured projects';
+    stats[1].querySelector('.ov-stat-val').textContent = DATA.projects.length;
   }
 
   const contributions = document.querySelector('.ov-big:last-child div[style]');
   if(contributions){
-    contributions.textContent = `${GITHUB_CONTRIBUTIONS_LAST_YEAR} contributions in the last year`;
+    contributions.textContent = events.length ? events.length + ' recent public GitHub events' : 'No recent public GitHub events returned';
   }
 
   buildActivityGrid(events);
@@ -849,21 +859,14 @@ async function loadGitHubData(){
     const user = await userRes.json();
     const repos = (await repoRes.json()).filter(repo => !repo.fork);
     const events = eventRes.ok ? await eventRes.json() : [];
-    const cvRepoOrder = ['AirTicket_Frontend_FlyQM','company-management','Ticketany_Frontend','cms_frontend'];
-    const sortLiveFirst = (a, b) => {
-      const aLive = Boolean(cleanDemoUrl(a.homepage));
-      const bLive = Boolean(cleanDemoUrl(b.homepage));
-      if(aLive !== bLive) return aLive ? -1 : 1;
-      return new Date(b.updated_at) - new Date(a.updated_at);
-    };
-    const starredRepos = repos.filter(repo => repo.stargazers_count > 0).sort(sortLiveFirst);
-    const orderedRepos = [
-      ...cvRepoOrder.map(name => repos.find(repo => repo.name.toLowerCase() === name.toLowerCase())).filter(Boolean).sort(sortLiveFirst),
-      ...starredRepos.filter(repo => !cvRepoOrder.some(name => repo.name.toLowerCase() === name.toLowerCase()))
-    ].filter(repo => repo.stargazers_count > 0).sort(sortLiveFirst);
+    const featuredRepoOrder = ['AirTicket_Frontend_FlyQM','company-management','Ticketany_Frontend','cms_frontend'];
+    const featuredProjects = featuredRepoOrder.map((name, index) => {
+      const repo = repos.find(item => item.name.toLowerCase() === name.toLowerCase());
+      return repo ? repoToProject(repo) : DATA.projects[index];
+    });
 
     updateGitHubOverview(user, repos, events);
-    renderProjects(orderedRepos.map(repoToProject));
+    renderProjects(featuredProjects);
   }catch(error){
     console.warn('Using fallback portfolio data:', error);
     buildActivityGrid();
