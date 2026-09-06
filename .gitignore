@@ -2,3 +2,9 @@
 tmp/
 .DS_Store
 Thumbs.db
+design-references/
+myCV/archive/
+myCV/__pycache__/
+My profolio- how to use is change f.txt
+assets/*
+!assets/khant-hero-facial-reference-v6.png

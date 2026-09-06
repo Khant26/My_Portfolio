@@ -11,9 +11,9 @@ https://khantmaung.com/
 - Work experience and technical skills
 - Four focused project case studies
 - Live GitHub profile, repository, avatar, and public activity data
-- Dark and light themes
+- Automatic browser-based light and dark themes with a manual toggle
 - Responsive layout
-- Downloadable CV
+- Downloadable one-page CV with editable source in the myCV folder
 
 ## Built with
 
@@ -21,7 +21,7 @@ This is a dependency-free static site built with semantic HTML, CSS, and JavaScr
 
 ## Run locally
 
-Open index.html directly or serve the directory with any static file server.
+Open myProfolio/index.html directly, or serve the myProfolio directory with any static file server.
 
 ## Deployment
 
@@ -32,3 +32,6 @@ Vercel serves index.html from the repository root at https://khantmaung.com/.
 - GitHub: https://github.com/Khant26
 - Email: khantmg262626@gmail.com
 - Website: https://khantmaung.com/
+## Workspace folder
+
+All portfolio website and CV files are organized inside C:\KhantMaung\myProfolio.
