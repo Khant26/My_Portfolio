@@ -348,6 +348,15 @@
       flex-direction: column;
       justify-content: space-between;
     }
+    .project-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin: 0 0 1.75rem;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid var(--line);
+      background: var(--bg);
+    }
     .project-feature-number { margin: 0 0 2rem; color: var(--accent); font: .72rem/1 "JetBrains Mono", monospace; }
     .project-feature h3 { margin: 0 0 1rem; font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.05; letter-spacing: -.045em; font-weight: 500; }
     .project-feature-copy { margin: 0; color: var(--muted); font-size: .94rem; }
@@ -618,33 +627,34 @@
               <span class="project-number">01</span>
               <span class="project-name">Airline Booking Platform</span>
               <span class="project-meta">Full stack</span>
-              <span class="project-meta">React / Node / PostgreSQL</span>
-              <span class="project-status">GitHub</span>
-            </button>
-            <button class="project-row" type="button" data-project="enterprise" aria-pressed="false">
-              <span class="project-number">02</span>
-              <span class="project-name">Enterprise Management System</span>
-              <span class="project-meta">Full stack</span>
-              <span class="project-meta">React / Node / PostgreSQL</span>
-              <span class="project-status">Private</span>
+              <span class="project-meta">React / FastAPI / PostgreSQL</span>
+              <span class="project-status live">Live site</span>
             </button>
             <button class="project-row" type="button" data-project="ticketing" aria-pressed="false">
-              <span class="project-number">03</span>
-              <span class="project-name">Event Booking &amp; Ticketing</span>
+              <span class="project-number">02</span>
+              <span class="project-name">TicketsAnywhere</span>
               <span class="project-meta">Full stack</span>
-              <span class="project-meta">React / Node / MongoDB</span>
+              <span class="project-meta">React / Django / PostgreSQL</span>
               <span class="project-status live">Live site</span>
             </button>
             <button class="project-row" type="button" data-project="cms" aria-pressed="false">
-              <span class="project-number">04</span>
-              <span class="project-name">Content Management System</span>
+              <span class="project-number">03</span>
+              <span class="project-name">Civil Master Solution</span>
               <span class="project-meta">Full stack</span>
               <span class="project-meta">React / Django / REST</span>
+              <span class="project-status live">Live site</span>
+            </button>
+            <button class="project-row" type="button" data-project="pos" aria-pressed="false">
+              <span class="project-number">04</span>
+              <span class="project-name">SawYun POS</span>
+              <span class="project-meta">Full stack</span>
+              <span class="project-meta">React / FastAPI / PostgreSQL</span>
               <span class="project-status live">Live site</span>
             </button>
           </div>
           <aside class="project-feature" aria-live="polite" aria-label="Selected project details">
             <div>
+              <img class="project-image" id="project-image" src="assets/project-flyqm.png" alt="FlyQM flight search interface">
               <p class="project-feature-number" id="project-number">01 / SELECTED</p>
               <h3 id="project-title">Real-Time Airline Booking Platform</h3>
               <p class="project-feature-copy" id="project-copy">A complete booking workflow with dynamic flight search, secure user sessions, booking history, REST APIs, price calculation, and production-minded reverse proxy architecture.</p>
@@ -751,39 +761,59 @@
         number: "01",
         title: "Real-Time Airline Booking Platform",
         copy: "A complete booking workflow with dynamic flight search, secure user sessions, booking history, REST APIs, price calculation, and production-minded reverse proxy architecture.",
-        stack: ["React.js", "Node.js", "Express.js", "PostgreSQL", "JWT", "Nginx"],
-        links: [{ label: "View GitHub", href: "https://github.com/Khant26/flyqm-web" }]
-      },
-      enterprise: {
-        number: "02",
-        title: "Enterprise Management System",
-        copy: "An internal operations platform covering employee management, performance tracking, reporting, meetings, events, role-based access, and administrative oversight.",
-        stack: ["React.js", "Node.js", "Express.js", "PostgreSQL", "RBAC", "REST API"],
-        links: []
+        image: "assets/project-flyqm.png",
+        imageAlt: "FlyQM flight search interface",
+        stack: ["React.js", "FastAPI", "PostgreSQL", "Redis", "Docker", "Nginx"],
+        links: [
+          { label: "View live site", href: "https://flyqm.com/en" },
+          { label: "Frontend", href: "https://github.com/Khant26/flyqm-web" },
+          { label: "Admin", href: "https://github.com/Khant26/flyqm-admin" },
+          { label: "API", href: "https://github.com/Khant26/flyqm-api" }
+        ]
       },
       ticketing: {
-        number: "03",
-        title: "Event Booking & Ticketing Platform",
+        number: "02",
+        title: "TicketsAnywhere",
         copy: "A full-stack event platform for discovering events, booking tickets, creating listings, managing users, and handling reliable validation and booking workflows.",
-        stack: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Tailwind CSS"],
+        image: "assets/project-ticketsany.png",
+        imageAlt: "TicketsAnywhere event discovery interface",
+        stack: ["React.js", "Django", "PostgreSQL", "REST API", "JWT", "Tailwind CSS"],
         links: [
           { label: "View live site", href: "https://ticketsany.com/" },
-          { label: "View GitHub", href: "https://github.com/Khant26/ticketsany-web" }
+          { label: "Frontend", href: "https://github.com/Khant26/ticketsany-web" },
+          { label: "Admin", href: "https://github.com/Khant26/ticketsany-admin" },
+          { label: "API", href: "https://github.com/Khant26/ticketsany-api" }
         ]
       },
       cms: {
-        number: "04",
-        title: "Content Management System",
+        number: "03",
+        title: "Civil Master Solution",
         copy: "A React and Django content platform with an administration dashboard, role-based access, publishing APIs, and production deployments for a real company website.",
+        image: "assets/project-civil-master-solution.png",
+        imageAlt: "Civil Master Solution company website",
         stack: ["React.js", "Django", "REST API", "RBAC", "Tailwind CSS", "Vercel"],
         links: [
           { label: "View live site", href: "https://www.civilmastersolution.com/" },
-          { label: "View GitHub", href: "https://github.com/Khant26/civil-master-solution-web" }
+          { label: "Frontend", href: "https://github.com/Khant26/civil-master-solution-web" },
+          { label: "API", href: "https://github.com/Khant26/cms_backend" }
+        ]
+      },
+      pos: {
+        number: "04",
+        title: "SawYun POS",
+        copy: "A multi-tenant point-of-sale platform with checkout, inventory, customers, procurement, analytics, subscriptions, offline sales sync, and native receipt printing.",
+        image: "assets/project-sawyun-pos.png",
+        imageAlt: "SawYun POS business dashboard",
+        stack: ["React", "TypeScript", "FastAPI", "PostgreSQL", "Redis", "Tauri"],
+        links: [
+          { label: "View live site", href: "https://pos.sawyuntech.com/login" },
+          { label: "View GitHub", href: "https://github.com/Khant26/sawyun-pos" }
         ]
       }
     };
 
     const projectRows = document.querySelectorAll(".project-row");
+    const projectImage = document.getElementById("project-image");
     const projectNumber = document.getElementById("project-number");
     const projectTitle = document.getElementById("project-title");
     const projectCopy = document.getElementById("project-copy");
@@ -793,6 +823,8 @@
     function renderProject(projectId) {
       const project = projects[projectId];
       projectNumber.textContent = project.number + " / SELECTED";
+      projectImage.src = project.image;
+      projectImage.alt = project.imageAlt;
       projectTitle.textContent = project.title;
       projectCopy.textContent = project.copy;
       projectStack.replaceChildren(...project.stack.map((item) => {

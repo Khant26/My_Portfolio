@@ -9,7 +9,7 @@ https://khantmaung.com/
 ## What it includes
 
 - Work experience and technical skills
-- Four focused project case studies
+- Four focused project case studies with live links and product screenshots
 - Live GitHub profile, repository, avatar, and public activity data
 - Automatic browser-based light and dark themes with a manual toggle
 - Responsive layout
