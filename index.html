@@ -651,6 +651,13 @@
               <span class="project-meta">React / FastAPI / PostgreSQL</span>
               <span class="project-status live">Live site</span>
             </button>
+            <button class="project-row" type="button" data-project="enterprise" aria-pressed="false">
+              <span class="project-number">05</span>
+              <span class="project-name">Enterprise Management System</span>
+              <span class="project-meta">Full stack</span>
+              <span class="project-meta">React / Node / PostgreSQL</span>
+              <span class="project-status">Private</span>
+            </button>
           </div>
           <aside class="project-feature" aria-live="polite" aria-label="Selected project details">
             <div>
@@ -809,6 +816,15 @@
           { label: "View live site", href: "https://pos.sawyuntech.com/login" },
           { label: "View GitHub", href: "https://github.com/Khant26/sawyun-pos" }
         ]
+      },
+      enterprise: {
+        number: "05",
+        title: "Enterprise Management System",
+        copy: "An internal operations platform covering employee management, performance tracking, reporting, meetings, events, role-based access, and administrative oversight.",
+        image: null,
+        imageAlt: "",
+        stack: ["React.js", "Node.js", "Express.js", "PostgreSQL", "RBAC", "REST API"],
+        links: []
       }
     };
 
@@ -823,8 +839,14 @@
     function renderProject(projectId) {
       const project = projects[projectId];
       projectNumber.textContent = project.number + " / SELECTED";
-      projectImage.src = project.image;
-      projectImage.alt = project.imageAlt;
+      projectImage.hidden = !project.image;
+      if (project.image) {
+        projectImage.src = project.image;
+        projectImage.alt = project.imageAlt;
+      } else {
+        projectImage.removeAttribute("src");
+        projectImage.alt = "";
+      }
       projectTitle.textContent = project.title;
       projectCopy.textContent = project.copy;
       projectStack.replaceChildren(...project.stack.map((item) => {
